@@ -1,0 +1,33 @@
+{
+  "name": "pawlink-ai-backend",
+  "version": "1.0.0",
+  "description": "Backend API for PawLink AI - Multi-Tenant Animal Welfare Management Platform",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node scripts/seed.js"
+  },
+  "keywords": [
+    "pawlink",
+    "animal-welfare",
+    "animal-rescue",
+    "saas",
+    "ai",
+    "express",
+    "postgresql"
+  ],
+  "author": "PawLink AI Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "pg": "^8.23.0"
+  }
+}

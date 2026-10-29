@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 4
+names: ['bleeding', 'cut', 'fracture', 'infection']
+
+roboflow:
+  workspace: hpragnya-m
+  project: animal-injury-detection-tfejm-8bhmo
+  version: 1
+  license: CC BY 4.0
+  url: https://app.roboflow.com/hpragnya-m/animal-injury-detection-tfejm-8bhmo/1

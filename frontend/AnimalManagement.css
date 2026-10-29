@@ -1,0 +1,578 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Fredoka:wght@500;600;700&display=swap");
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #a78bfa 0%, #f472b6 100%);
+  --secondary-gradient: linear-gradient(135deg, #ffffff 0%, #fdf4ff 100%);
+  --accent-glow: 0 0 25px rgba(192, 132, 252, 0.45);
+  --card-glass: rgba(255, 255, 255, 0.78);
+  --border-soft: rgba(216, 180, 254, 0.45);
+  --text-main: #3b2d54;
+  --text-sub: #7b6f93;
+}
+
+/* =========================================
+   CONTAINER & MAGICAL PASTEL CANVAS
+   ========================================= */
+.animal-manager {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at 10% 20%, rgba(253, 224, 254, 0.55) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(216, 180, 254, 0.5) 0%, transparent 45%),
+              radial-gradient(circle at 50% 50%, rgba(254, 243, 199, 0.35) 0%, transparent 50%),
+              linear-gradient(180deg, #fdf4ff 0%, #faf5ff 100%);
+  border-radius: 28px;
+  box-shadow: 0 20px 50px -15px rgba(168, 85, 247, 0.15),
+              inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+/* Ambient stardust shine overlay */
+.animal-manager::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 10%, transparent 20%);
+  background-size: 28px 28px;
+  opacity: 0.35;
+  pointer-events: none;
+  animation: magicalDrift 60s linear infinite;
+}
+
+@keyframes magicalDrift {
+  0% { transform: rotate(0deg) translate(0, 0); }
+  50% { transform: rotate(180deg) translate(-20px, 20px); }
+  100% { transform: rotate(360deg) translate(0, 0); }
+}
+
+/* =========================================
+   TOOLBAR & CONTROLS
+   ========================================= */
+.animal-manager-toolbar,
+.animal-manager-filters,
+.animal-manager-actions,
+.animal-form-heading,
+.animal-form-actions,
+.animal-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.animal-manager-toolbar {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.animal-manager-filters {
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+/* Form inputs & selects with glowing pastel rim */
+.animal-manager input,
+.animal-manager select,
+.animal-manager textarea {
+  min-width: 0;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border-soft);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(147, 51, 234, 0.05),
+              inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+}
+
+.animal-manager input:focus,
+.animal-manager select:focus,
+.animal-manager textarea:focus {
+  border-color: #c084fc;
+  background: #ffffff;
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(192, 132, 252, 0.3),
+              0 0 0 3px rgba(216, 180, 254, 0.35);
+}
+
+.animal-manager-filters input {
+  width: min(100%, 340px);
+}
+
+/* =========================================
+   GAMIFIED BUTTONS (POPPY 3D PRESS & SOUND-LIKE FEEL)
+   ========================================= */
+.animal-manager button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 16px;
+  font-family: "Fredoka", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.2s ease;
+}
+
+/* Secondary Button (Cloudy Pastel Push) */
+.animal-manager .animal-secondary-button {
+  border: 1.5px solid #e9d5ff;
+  background: #ffffff;
+  color: #8b5cf6;
+  box-shadow: 0 5px 0 #ddd6fe, 0 8px 16px rgba(139, 92, 246, 0.12);
+}
+
+.animal-manager .animal-secondary-button:hover:not(:disabled) {
+  background: #faf5ff;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #ddd6fe, 0 12px 20px rgba(139, 92, 246, 0.18);
+}
+
+.animal-manager .animal-secondary-button:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #ddd6fe, 0 3px 6px rgba(139, 92, 246, 0.1);
+}
+
+/* Primary Button (Magic Gem 3D Press) */
+.animal-manager .animal-primary-button {
+  border: 1.5px solid #d946ef;
+  background: linear-gradient(135deg, #c084fc 0%, #f472b6 100%);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 0 #a21caf, 0 10px 22px rgba(217, 70, 239, 0.35);
+}
+
+.animal-manager .animal-primary-button:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 7px 0 #a21caf, 0 14px 28px rgba(217, 70, 239, 0.45);
+}
+
+.animal-manager .animal-primary-button:active:not(:disabled) {
+  transform: translateY(4px) scale(0.98);
+  box-shadow: 0 1px 0 #a21caf, 0 4px 8px rgba(217, 70, 239, 0.2);
+}
+
+.animal-manager button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   POPOVER FEEDBACK ALERTS (BOUNCY IN)
+   ========================================= */
+.animal-feedback {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  animation: popInBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popInBounce {
+  0% { transform: scale(0.85) translateY(-10px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.animal-feedback.error {
+  border: 1.5px solid #fecdd3;
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  color: #e11d48;
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.18);
+}
+
+.animal-feedback.success {
+  border: 1.5px solid #bbf7d0;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  color: #16a34a;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.18);
+}
+
+.animal-feedback button {
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+  border-radius: 50%;
+}
+
+.animal-feedback button:hover {
+  background: rgba(0, 0, 0, 0.06);
+  transform: scale(1.15) rotate(9deg);
+}
+
+/* =========================================
+   MAGICAL GLASS POPUP MODAL / FORM
+   ========================================= */
+.animal-form {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  border: 2px solid rgba(233, 213, 255, 0.9);
+  border-radius: 26px;
+  box-shadow: 0 25px 60px -12px rgba(168, 85, 247, 0.22),
+              0 0 0 1px rgba(255, 255, 255, 0.8);
+  animation: popInBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animal-form-heading h3 {
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  font-size: 22px;
+  color: #4a287b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.animal-form-heading h3::before {
+  content: "✨";
+  font-size: 20px;
+}
+
+.animal-form-heading p {
+  margin: 4px 0 0;
+  color: var(--text-sub);
+  font-size: 13px;
+}
+
+.animal-manager .animal-close-button {
+  padding: 8px;
+  border: 0;
+  background: rgba(243, 232, 255, 0.6);
+  color: #9333ea;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.animal-manager .animal-close-button:hover {
+  background: #f3e8ff;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.animal-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.animal-form-grid label {
+  display: grid;
+  gap: 8px;
+  color: #584a70;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.animal-form-grid .animal-form-wide {
+  grid-column: 1 / -1;
+}
+
+.animal-form-grid textarea {
+  resize: vertical;
+}
+
+.animal-form-actions {
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1.5px dashed rgba(216, 180, 254, 0.6);
+}
+
+/* =========================================
+   SUMMARY & COUNTER
+   ========================================= */
+.animal-manager-summary {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #8b5cf6;
+  font-family: "Fredoka", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(243, 232, 255, 0.6);
+  padding: 6px 14px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.animal-manager-summary svg {
+  animation: pawWiggle 2.5s ease-in-out infinite;
+}
+
+@keyframes pawWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-14deg); }
+  75% { transform: rotate(14deg); }
+}
+
+/* =========================================
+   FANTASY TABLE DESIGN
+   ========================================= */
+.animal-manager-table-wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 22px;
+  box-shadow: 0 12px 35px -8px rgba(147, 51, 234, 0.1);
+}
+
+.animal-manager-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.animal-manager-table th {
+  padding: 16px 18px;
+  background: rgba(245, 240, 255, 0.9);
+  color: #6b21a8;
+  font-family: "Fredoka", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #ede9fe;
+}
+
+.animal-manager-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(237, 233, 254, 0.7);
+  color: var(--text-main);
+  font-size: 13px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.animal-manager-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.animal-manager-table tbody tr:hover td {
+  background: rgba(250, 245, 255, 0.85);
+}
+
+.animal-manager-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.animal-manager-table td strong {
+  display: block;
+  font-family: "Fredoka", sans-serif;
+  font-size: 15px;
+  color: #3b0764;
+}
+
+.animal-manager-table td small {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-sub);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.animal-manager-table td select {
+  max-width: 180px;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 12px;
+}
+
+/* =========================================
+   MINI GAMIFIED ACTION BUTTONS
+   ========================================= */
+.animal-row-actions {
+  gap: 8px;
+}
+
+.animal-manager .animal-row-actions button {
+  padding: 8px 10px;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #9333ea;
+  box-shadow: 0 3px 0 #ddd6fe, 0 4px 10px rgba(147, 51, 234, 0.1);
+}
+
+.animal-manager .animal-row-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #ddd6fe, 0 6px 12px rgba(147, 51, 234, 0.2);
+  background: #faf5ff;
+}
+
+.animal-manager .animal-row-actions button:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 #ddd6fe;
+}
+
+.animal-manager .animal-row-actions .animal-delete-button {
+  border-color: #fecdd3;
+  color: #f43f5e;
+  box-shadow: 0 3px 0 #fca5a5, 0 4px 10px rgba(244, 63, 94, 0.15);
+}
+
+.animal-manager .animal-row-actions .animal-delete-button:hover {
+  background: #fff1f2;
+  box-shadow: 0 5px 0 #fca5a5, 0 6px 12px rgba(244, 63, 94, 0.25);
+}
+
+.animal-manager .animal-row-actions .animal-delete-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 #fca5a5;
+}
+
+/* =========================================
+   STATUS PILLS (CANDY CAPSULES WITH EMOJIS)
+   ========================================= */
+.animal-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: "Fredoka", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Adopted / Rescued / Available (Fresh Mint & Emerald) */
+.animal-status-pill.status-rescued,
+.animal-status-pill.status-available-for-adoption,
+.animal-status-pill.status-adopted {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+.animal-status-pill.status-rescued::before { content: "🍀"; }
+.animal-status-pill.status-available-for-adoption::before { content: "🌟"; }
+.animal-status-pill.status-adopted::before { content: "💖"; }
+
+/* Reported / Pending (Peach & Warm Honey) */
+.animal-status-pill.status-reported,
+.animal-status-pill.status-adoption-pending {
+  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+  color: #c2410c;
+  border: 1px solid #fdba74;
+}
+.animal-status-pill.status-reported::before { content: "📢"; }
+.animal-status-pill.status-adoption-pending::before { content: "⏳"; }
+
+/* In Shelter / Treatment (Periwinkle & Sky) */
+.animal-status-pill.status-under-treatment,
+.animal-status-pill.status-in-shelter {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #4338ca;
+  border: 1px solid #a5b4fc;
+}
+.animal-status-pill.status-under-treatment::before { content: "🩺"; }
+.animal-status-pill.status-in-shelter::before { content: "🏡"; }
+
+/* Released / Deceased (Soft Lavender & Rose) */
+.animal-status-pill.status-deceased,
+.animal-status-pill.status-released {
+  background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+  color: #be123c;
+  border: 1px solid #fda4af;
+}
+.animal-status-pill.status-released::before { content: "🕊️"; }
+.animal-status-pill.status-deceased::before { content: "🌈"; }
+
+/* =========================================
+   EMPTY STATE (FLOATING MASCOT)
+   ========================================= */
+.animal-manager-empty {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #a855f7;
+  font-family: "Fredoka", sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+.animal-manager-empty svg {
+  animation: floatPaw 3s ease-in-out infinite;
+}
+
+@keyframes floatPaw {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(8deg); }
+}
+
+.animal-manager-empty strong {
+  font-size: 18px;
+  color: #6b21a8;
+}
+
+/* =========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================= */
+@media (max-width: 680px) {
+  .animal-manager {
+    padding: 16px;
+  }
+
+  .animal-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .animal-form-grid .animal-form-wide {
+    grid-column: auto;
+  }
+
+  .animal-manager-actions {
+    width: 100%;
+  }
+
+  .animal-manager-actions button {
+    flex: 1;
+  }
+
+  .animal-form {
+    padding: 18px;
+  }
+}

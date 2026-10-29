@@ -1,0 +1,106 @@
+
+.aws-team-stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.aws-team-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aws-team-location svg {
+  color: #c084fc;
+  flex-shrink: 0;
+}
+
+.aws-team-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgba(59, 29, 84, 0.38);
+  backdrop-filter: blur(7px);
+}
+
+.aws-team-modal {
+  width: min(680px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: #fffaff;
+  box-shadow: 0 25px 80px rgba(74, 40, 123, 0.25);
+}
+
+.aws-team-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0 26px 26px;
+}
+
+.aws-team-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #6b21a8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.aws-team-form input,
+.aws-team-form select {
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 12px;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  color: #3b2d54;
+}
+
+.aws-team-form input:focus,
+.aws-team-form select:focus {
+  border-color: #c084fc;
+  box-shadow: 0 0 0 3px rgba(216, 180, 254, 0.25);
+}
+
+.aws-team-full-width,
+.aws-team-form-actions {
+  grid-column: 1 / -1;
+}
+
+.aws-team-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .aws-team-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .aws-team-form {
+    grid-template-columns: 1fr;
+    padding: 0 18px 20px;
+  }
+
+  .aws-team-full-width,
+  .aws-team-form-actions {
+    grid-column: auto;
+  }
+
+  .aws-team-modal-backdrop {
+    padding: 10px;
+  }
+
+  .aws-team-modal {
+    max-height: calc(100vh - 20px);
+  }
+}

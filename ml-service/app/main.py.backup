@@ -1,0 +1,110 @@
+from datetime import datetime, timezone
+from typing import Optional
+
+from fastapi import FastAPI
+from pydantic import BaseModel, Field
+
+
+app = FastAPI(
+    title="PawLink AI ML Service",
+    description="AI-powered rescue priority classification service for PawLink AI.",
+    version="1.0.0",
+)
+
+
+# -------------------------------------------------------
+# Rescue Priority Prediction Request
+# -------------------------------------------------------
+
+class RescuePriorityRequest(BaseModel):
+    animal_type: str = Field(..., min_length=1)
+    age_group: Optional[str] = None
+
+    injury_severity: Optional[int] = Field(
+        default=None,
+        ge=1,
+        le=5,
+    )
+
+    visible_bleeding: bool = False
+
+    mobility_status: Optional[str] = None
+    consciousness: Optional[str] = None
+
+    breathing_difficulty: bool = False
+
+    time_since_injury_hours: Optional[float] = Field(
+        default=None,
+        ge=0,
+    )
+
+    location_type: Optional[str] = None
+    traffic_risk: Optional[str] = None
+    weather_condition: Optional[str] = None
+
+    previous_reports: int = Field(
+        default=0,
+        ge=0,
+    )
+
+    reporter_confidence: Optional[float] = Field(
+        default=None,
+        ge=0,
+        le=100,
+    )
+
+
+# -------------------------------------------------------
+# Root
+# -------------------------------------------------------
+
+@app.get("/")
+def root():
+    return {
+        "success": True,
+        "message": "Welcome to PawLink AI ML Service",
+        "service": "PawLink AI",
+        "version": "1.0.0",
+    }
+
+
+# -------------------------------------------------------
+# Health Check
+# -------------------------------------------------------
+
+@app.get("/health")
+def health_check():
+    return {
+        "success": True,
+        "status": "healthy",
+        "service": "pawlink-ml-service",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# -------------------------------------------------------
+# Rescue Priority Prediction
+# -------------------------------------------------------
+
+@app.post("/predict/rescue-priority")
+def predict_rescue_priority(request: RescuePriorityRequest):
+    """
+    ML prediction contract.
+
+    The actual tabular + vision models will be connected later.
+    For now, this endpoint validates and accepts the feature payload.
+    """
+
+    return {
+        "success": True,
+        "status": "MODEL_NOT_CONNECTED",
+        "message": "Rescue priority prediction endpoint is ready. "
+                   "The production ML model has not been connected yet.",
+        "data": {
+            "model_version": None,
+            "priority": None,
+            "confidence": None,
+            "vision": None,
+        },
+        "received_features": request.model_dump(),
+    }

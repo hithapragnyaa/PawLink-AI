@@ -1,0 +1,35 @@
+{
+    "model_name": "SVM",
+    "feature_names": [
+        "head_injury",
+        "head_injury_severity",
+        "breathing_difficulty",
+        "consciousness",
+        "bleeding_severity",
+        "mobility_status",
+        "suspected_fracture",
+        "seizures",
+        "suspected_poisoning",
+        "trapped",
+        "roadside_danger",
+        "orange_warning_symptoms"
+    ],
+    "target_name": "clinical_priority",
+    "target_classes": [
+        "High",
+        "Low",
+        "Medium"
+    ],
+    "excluded_features": [
+        "case_id",
+        "animal_species",
+        "species_group",
+        "animal_size",
+        "animal_age_group",
+        "distance_km",
+        "time_since_report_min",
+        "data_origin",
+        "red_flag_symptoms",
+        "red_flag_present"
+    ]
+}
